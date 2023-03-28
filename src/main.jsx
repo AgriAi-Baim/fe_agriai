@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import Form from './components/Form'
-import Predict from './pages/Predict'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes/router'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Predict/>
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
