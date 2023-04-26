@@ -1,8 +1,13 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 import { predict } from "../api/predict";
+import { resultPlants } from "../state/hasil";
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+
 function Form() {
   const [formValues, setFormValues] = useState({});
+  const setResultPlants = useSetRecoilState(resultPlants);
+  const getAtom = useRecoilValue(resultPlants);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -11,8 +16,10 @@ function Form() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await predict(formValues)
-    console.log(res.data); // tampilkan objek JSON pada konsol
+    const res = await predict(formValues);
+    setResultPlants(res.data)
+    console.log({getAtom})
+
   };
 
   return (
